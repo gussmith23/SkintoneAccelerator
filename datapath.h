@@ -21,5 +21,11 @@
 `define Y_max 235
 
 `define meancr_width 16
+`define widthcr_width 16
+`define meancb_width 16
+`define widthcb_width 16
+
+`define meancr_K_h 16'b1001101000000000
+`define meancb_K_h 16'b0110110000000000
 
 `endif

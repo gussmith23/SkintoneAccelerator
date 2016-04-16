@@ -29,6 +29,12 @@
 `define radius 255
 `define fac 510
 
+/// FIXED POINT DEFINITIONS
+`define fp_width 16
+`define fp_frac 8
+`define fp_int `fp_width - `fp_frac - 1
+/// END FIXED POINT DEFINITIONS
+
 `define meancr_width 16
 `define widthcr_width 16
 `define meancb_width 16

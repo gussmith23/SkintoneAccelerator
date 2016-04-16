@@ -30,9 +30,17 @@
 `define fac 510
 
 /// FIXED POINT DEFINITIONS
+// Currently: Q7.8
 `define fp_width 16
 `define fp_frac 8
 `define fp_int `fp_width - `fp_frac - 1
+
+// Assumes that we want the fp parameters defined above.
+// Doing arbitrary conversion is possible but messy (i think)
+task convert_to_fixed;
+	input real a;
+	output reg []
+endtask
 /// END FIXED POINT DEFINITIONS
 
 `define meancr_width 16
@@ -48,5 +56,8 @@
 
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000
+
+
+
 
 `endif

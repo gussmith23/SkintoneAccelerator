@@ -37,6 +37,7 @@
 
 // Assumes that we want the fp parameters defined above.
 // Doing arbitrary conversion is possible but messy (i think)
+module conversion_tasks();
 task convert_to_fixed;
 	input real a;
 	output reg signed [`fp_width - 1:0] out;
@@ -63,6 +64,7 @@ task convert_from_fixed;
 	end
 	
 endtask
+endmodule
 
 
 /// END FIXED POINT DEFINITIONS
@@ -80,8 +82,6 @@ endtask
 
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000
-
-
 
 
 `endif

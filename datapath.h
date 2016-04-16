@@ -28,4 +28,7 @@
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000
 
+`define cos_t -0.81873459927
+`define sin_t 0.57417214835
+
 `endif

@@ -20,6 +20,12 @@
 `define Y_min 16
 `define Y_max 235
 
+`define cos_t -0.81873459927
+`define sin_t 0.57417214835
+
+`define A2 644.6521
+`define B2 196.8409
+
 `define meancr_width 16
 `define widthcr_width 16
 `define meancb_width 16
@@ -27,8 +33,5 @@
 
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000
-
-`define cos_t -0.81873459927
-`define sin_t 0.57417214835
 
 `endif

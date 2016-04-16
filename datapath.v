@@ -20,5 +20,17 @@ module skintone_datapath
 reg 	[15:0]		valid_in;
 
 
+/// BEHAVIORAL CODE
+
+//-Valid bits---------------------------------------------
+always @ (posedge clk) valid_in[0] <= pixel_datain_valid;
+assign result_dataout_valid = valid_in[15];
+genvar i;
+generate
+	for (i = 0; i < 15; i = i + 1) begin
+		always @ (posedge clk)  valid_in[i+1] <= valid_in[i];
+	end
+endgenerate
+//-End valid bits-----------------------------------------
 
 endmodule

@@ -53,11 +53,13 @@ task convert_from_fixed;
 	input reg [`fp_width - 1:0] in;
 	output real a;
 	
-	real temp;
+	integer temp_int;
+	real temp_real;
 	
 	begin
-		temp = in;
-		a = temp * 2**(-1* `fp_frac);
+		temp_int = in;
+		temp_real = $itor(temp_int);
+		a = temp_real * 2**(-1* `fp_frac);
 	end
 	
 endtask

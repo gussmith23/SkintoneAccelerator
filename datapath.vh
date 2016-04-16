@@ -39,7 +39,7 @@
 // Doing arbitrary conversion is possible but messy (i think)
 task convert_to_fixed;
 	input real a;
-	output reg [`fp_width - 1:0] out;
+	output reg signed [`fp_width - 1:0] out;
 	
 	real shifted;
 	
@@ -50,7 +50,7 @@ task convert_to_fixed;
 endtask
 
 task convert_from_fixed;
-	input reg [`fp_width - 1:0] in;
+	input reg signed [`fp_width - 1:0] in;
 	output real a;
 	
 	integer temp_int;
@@ -59,7 +59,7 @@ task convert_from_fixed;
 	begin
 		temp_int = in;
 		temp_real = $itor(temp_int);
-		a = temp_real * 2**(-1* `fp_frac);
+		a = temp_real * 2.0**(-1 * `fp_frac);
 	end
 	
 endtask

@@ -12,6 +12,9 @@ module skintone_datapath
 	output				result_dataout_ready
 );
 
+// Contains valid_in bit for stages 0 through 15.
+reg 	[15:0]		valid_in;
+
 
 
 endmodule

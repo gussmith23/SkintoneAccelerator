@@ -32,7 +32,7 @@
 /// FIXED POINT DEFINITIONS
 // Currently: Q7.8
 `define fp_width 16
-`define fp_frac 8
+`define fp_frac 7
 `define fp_int `fp_width - `fp_frac - 1
 
 // Assumes that we want the fp parameters defined above.
@@ -44,7 +44,7 @@ task convert_to_fixed;
 	real shifted;
 	
 	begin	
-		shifted = a * 2**(`fp_frac);
+		shifted = a * 2.0**(`fp_frac);
 		out = $rtoi(shifted);
 	end
 endtask

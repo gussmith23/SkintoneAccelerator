@@ -39,8 +39,30 @@
 // Doing arbitrary conversion is possible but messy (i think)
 task convert_to_fixed;
 	input real a;
-	output reg []
+	output reg [`fp_width - 1:0] out;
+	
+	real shifted;
+	
+	begin	
+		shifted = a * 2**(`fp_frac);
+		out = $rtoi(shifted);
+	end
 endtask
+
+task convert_from_fixed;
+	input reg [`fp_width - 1:0] in;
+	output real a;
+	
+	real temp;
+	
+	begin
+		temp = in;
+		a = temp * 2**(-1* `fp_frac);
+	end
+	
+endtask
+
+
 /// END FIXED POINT DEFINITIONS
 
 `define meancr_width 16

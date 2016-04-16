@@ -26,6 +26,9 @@
 `define A2 644.6521
 `define B2 196.8409
 
+`define radius 255
+`define fac 510
+
 `define meancr_width 16
 `define widthcr_width 16
 `define meancb_width 16

@@ -19,6 +19,41 @@ module skintone_datapath
 // Contains valid_in bit for stages 0 through 15.
 reg 	[15:0]		valid_in;
 
+// Stage 5
+reg 	[`transcr_output - 1: 0] 	transcr_output5, transcb_output5;
+
+// Stage 6
+reg		[`fp_width - 1:0]			cb_sub_output6, cr_sub_output6;
+
+// Stage 7
+reg		[`fp_width - 1:0]	cb_mult0_output7, cb_mult1_output7,
+								cr_mult0_output7, cr_mult1_output7;
+
+// Stage 8
+reg		[`fp_width - 1:0]	cb_add_output8, cr_add_output8;
+
+// Stage 9
+reg		[`fp_width - 1:0]	cb_sub_output9, cr_sub_output9;
+
+// Stage 10
+reg		[`fp_width - 1:0]	cb_mult_output10, cr_mult_output10;
+
+// Stage 11
+reg		[`fp_width - 1:0]	cb_mult_output11, cr_mult_output11;
+
+// Stage 12
+reg 	[`fp_width - 1:0]	add_output12;
+
+// Stage 13
+reg 	[`fp_width - 1:0]	sub_output13;
+reg							radius_bool13;
+
+// Stage 14
+reg 	[`fp_width - 1:0]	mult_output14;
+reg							radius_bool14;
+
+// Stage 15
+reg		[7:0]	skinscore15;
 
 /// BEHAVIORAL CODE
 
@@ -32,5 +67,6 @@ generate
 	end
 endgenerate
 //-End valid bits-----------------------------------------
+
 
 endmodule

@@ -75,8 +75,8 @@ endtask
 `define transcr_output 8
 `define transcb_output 8
 
-`define fp_mult_input_width 16
-`define fp_mult_output_width 16
+`define fp_mult_input_width `fp_width
+`define fp_mult_output_width `fp_width
 
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000

@@ -2,10 +2,10 @@
 
 module transcb
 (
-	input 			clk,
-	input 		[7:0]	Cb,
-	input 		[7:0]	Y,
-	output	reg	[7:0]	transcb
+	input 								clk,
+	input 		[7:0]					Cb,
+	input 		[7:0]					Y,
+	output	reg	[`transcb_output - 1:0]	transcb
 );
 
 wire 	[`meancb_width -1:0]	mean_output_wire;

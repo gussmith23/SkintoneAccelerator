@@ -2,10 +2,10 @@
 
 module transcr
 (
-	input 			clk,
-	input 		[7:0]	Cr,
-	input 		[7:0]	Y,
-	output	reg	[7:0]	transcr
+	input 								clk,
+	input 		[7:0]					Cr,
+	input 		[7:0]					Y,
+	output	reg	[`transcr_output - 1:0]	transcr
 );
 
 wire 	[`meancr_width -1:0]	mean_output_wire;

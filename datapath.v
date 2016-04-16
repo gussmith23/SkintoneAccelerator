@@ -1,3 +1,7 @@
+///
+/// Pipelined in stages 0-15.
+///
+
 `include "datapath.vh"
 
 module skintone_datapath

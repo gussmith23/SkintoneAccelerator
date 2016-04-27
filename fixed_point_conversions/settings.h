@@ -1,6 +1,10 @@
+#ifndef _skintone_settings_h_
+#define _skintone_settings_h_
+
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <bitset>
 
 double W_Cb  = 46.97            ;
 double WL_Cb =  23              ;
@@ -21,23 +25,28 @@ double B = 14.03                ;
 double Y_min = 16               ;
 double Y_max = 235              ;
 
-int width = 16;
-int frac_width = 8;
-int integer_width = width - frac_width - 1;
+const int width = 16;
+const int frac_width = 7;
+const int integer_width = width - frac_width - 1;
 
-
-inline long int convert_to_fixed_point(double a)
+inline std::bitset<width> convert_to_fixed_point(double a)
 {
-    a = a * pow(2.0, (double)frac_width);
-    return (long int) a;
-}
-
-inline std::string get_bits(long int a, int num_to_print)
-{
-	std::string out;
-	
-	for (int i = 0; i < num_to_print; i++)
-		out += ((a >> i)&1) == 0 ? "0" : "1";
+	std::bitset<width> out = std::bitset<width>( (long int) (a * pow(2.0, (double)frac_width)) );
+	if (a < 0.0f)
+		out[width-1] = 1;
 	
 	return out;
 }
+
+inline double convert_from_fixed_point(std::bitset<width> a)
+{
+	int sign = a[width-1];
+	a[width-1] = 0;
+	double out = (double) a.to_ulong();
+	out = out * pow(2.0, -1.0*((double)frac_width));
+	if (sign) out = out * -1.0;
+	
+	return out;
+}
+
+#endif

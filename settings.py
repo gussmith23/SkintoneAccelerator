@@ -17,9 +17,9 @@ B = 14.03
 Y_min = 16
 Y_max = 235
 
-integer_width = 8;
+width = 16
 frac_width = 8;
-width = integer_width+frac_width
+integer_width = width - frac_width - 1
 
 def convert_to_fixed_point(a):
     num = a
@@ -29,3 +29,9 @@ def convert_to_fixed_point(a):
     num = num&mask
 
     return num
+	
+def format_fixed_point_num(a):
+	bitstring = "{:b}".format(a);
+	neg = a < 0
+	#stopped here
+	bitstring = bitstring.replace("-","")

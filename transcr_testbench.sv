@@ -17,11 +17,12 @@ real widthcr_y;
 real meancr_y;
 real meancr_kh;
 real actual_transcr;
+real found_transcr;
 
 transcr dut(clk, Cr, Y, transcr);
 
 initial begin
-	$monitor("%b\t%b\t%b\t%f", Cr, Y, transcr, actual_transcr);
+	$monitor("%b\t%b\t%b\t%f", Cr, Y, found_transcr, actual_transcr);
 	clk = 0;
 	pair = new();
 end
@@ -53,7 +54,7 @@ always #5 begin
 	if(Y <= `K_l )
 		widthcr_y = `WL_Cr + (Y - `Y_min )*(`W_Cr - `WL_Cr )/(`K_l - `Y_min );
 	else if(`K_h <= Y)
-		widthcr_y = `WH_Cr + (`Y_max - Y)*(`W_Cr - `WH_Cr )/(`Y_max - `K_h );
+		widthcr_y = `WH_Cr + (`Y_max -  Y)*(`W_Cr - `WH_Cr )/(`Y_max - `K_h );
 	else
 		widthcr_y = 0.0;
 	
@@ -63,6 +64,10 @@ always #5 begin
 	else
 		actual_transcr = (Cr - meancr_y) * (`W_Cr / widthcr_y) + meancr_kh;
 		
+end
+
+always @ (transcr) begin
+	convert_from_fixed(transcr, found_transcr);
 end
 
 always #1000 $finish();

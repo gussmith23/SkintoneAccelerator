@@ -1,4 +1,4 @@
-`include "datapath.h"
+`include "datapath.vh"
 
 module transcr
 (

@@ -3,7 +3,7 @@
 module meancr
 (
 	input		[7:0]	Y,
-	output reg 			out
+	output 			out
 );
 
 reg 	[`meancr_width -1:0]	memory		[0:256];

@@ -11,8 +11,8 @@ module transcr
 wire 			[`meancr_width -1:0]	mean_output_wire;
 wire 			[`widthcr_width -1:0]	width_output_wire;
 
-reg 	signed	[7:0]					Cr0, Cr1, Cr2, Cr3, Cr4;
-reg 	signed	[7:0]					Y0;
+reg 			[7:0]					Cr0, Cr1, Cr2, Cr3, Cr4;
+reg 			[7:0]					Y0;
 reg										valid1, valid2, valid3, valid4;
 reg 	signed 	[`meancr_width -1:0]	mean_output1;
 reg 	signed	[`widthcr_width -1:0]	width_output1, width_output2;
@@ -25,12 +25,12 @@ assign transcr = transcr_reg;
 
 meancr meancr_lut(
 	.Y(Y0),
-	.out(mean_output)
+	.out(mean_output_wire)
 );
 
 widthcr widthcr_lut(
 	.Y(Y0),
-	.out(width_output)
+	.out(width_output_wire)
 );
 
 ///--STAGE 0-------------------------------
@@ -44,8 +44,8 @@ end
 
 always @ (posedge clk) begin
 	Cr1 <= Cr0;
-	mean_output1 <= mean_output;
-	width_output1 <= width_output;
+	mean_output1 <= mean_output_wire;
+	width_output1 <= width_output_wire;
 	valid1 <= (`K_l<=Y && Y<=`K_h) ? 1 : 0;
 end
 

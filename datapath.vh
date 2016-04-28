@@ -37,7 +37,7 @@
 
 // Assumes that we want the fp parameters defined above.
 // Doing arbitrary conversion is possible but messy (i think)
-module conversion_tasks();
+//module conversion_tasks();
 task convert_to_fixed;
 	input real a;
 	output reg signed [`fp_width - 1:0] out;
@@ -64,7 +64,7 @@ task convert_from_fixed;
 	end
 	
 endtask
-endmodule
+//endmodule
 
 
 /// END FIXED POINT DEFINITIONS

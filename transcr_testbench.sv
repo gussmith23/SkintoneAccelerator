@@ -6,7 +6,7 @@ class Cr_Y_pair;
 	rand bit[15:0] pair;
 endclass;
 
-reg 								clk;
+reg 							clk;
 reg 		[7:0]					Cr;
 reg 		[7:0]					Y;
 wire		[`transcr_output - 1:0]	transcr;
@@ -22,7 +22,7 @@ real found_transcr;
 transcr dut(clk, Cr, Y, transcr);
 
 initial begin
-	$monitor("%b\t%b\t%b\t%f", Cr, Y, found_transcr, actual_transcr);
+	$monitor("%b\t%b\t%f\t%f", Cr, Y, found_transcr, actual_transcr);
 	clk = 0;
 	pair = new();
 end

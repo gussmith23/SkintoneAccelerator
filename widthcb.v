@@ -9,9 +9,9 @@ module widthcb
 reg 	[`widthcb_width -1:0]	memory		[0:255];
 reg 							y;
 
-initial begin
-	$readmemb("data/widthcb_data.txt", memory);
-end
+assign out = y;
+
+initial $readmemb("data/widthcb_data.txt", memory);
 
 always @ (Y) begin
 	y <= memory[Y];

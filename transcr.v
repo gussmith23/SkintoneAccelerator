@@ -5,21 +5,23 @@ module transcr
 	input 								clk,
 	input 		[7:0]					Cr,
 	input 		[7:0]					Y,
-	output	reg	[`transcr_output - 1:0]	transcr
+	output		[`transcr_output - 1:0]	transcr
 );
 
-wire 	[`meancr_width -1:0]	mean_output_wire;
-wire 	[`widthcr_width -1:0]	width_output_wire;
+wire 			[`meancr_width -1:0]	mean_output_wire;
+wire 			[`widthcr_width -1:0]	width_output_wire;
 
-reg 	[7:0]			Cr0, Cr1, Cr2, Cr3, Cr4;
-reg 	[7:0]			Y0;
-reg				valid1, valid2, valid3, valid4;
-reg 	[`meancr_width -1:0]	mean_output1;
-reg 	[`widthcr_width -1:0]	width_output1, width_output2;
-reg	[15:0]			sub_output2;
-reg 	[31:0]			mult_output3;
-reg	[15:0]			add_output4;
+reg 	signed	[7:0]					Cr0, Cr1, Cr2, Cr3, Cr4;
+reg 	signed	[7:0]					Y0;
+reg										valid1, valid2, valid3, valid4;
+reg 	signed 	[`meancr_width -1:0]	mean_output1;
+reg 	signed	[`widthcr_width -1:0]	width_output1, width_output2;
+reg		signed	[15:0]					sub_output2;
+reg 	signed	[31:0]					mult_output3;
+reg		signed	[15:0]					add_output4;
+reg				[`transcr_output - 1:0]	transcr_reg;
 
+assign transcr = transcr_reg;
 
 meancr meancr_lut(
 	.Y(Y0),
@@ -75,7 +77,7 @@ end
 ///--OUTPUT-------------------------------
 
 always @ (posedge clk) begin
-	transcr <= valid4 ? Cr4 : add_output4[15:8];
+	transcr_reg <= valid4 ? Cr4 : add_output4[15:8];
 end
 
 endmodule 

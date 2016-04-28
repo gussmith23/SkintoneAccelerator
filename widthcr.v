@@ -7,7 +7,7 @@ module widthcr
 );
 
 reg 	[`widthcr_width -1:0]	memory		[0:255];
-reg 							y;
+reg 	[`widthcr_width -1:0]	y;
 
 assign out = y;
 

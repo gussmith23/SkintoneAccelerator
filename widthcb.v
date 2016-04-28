@@ -7,7 +7,7 @@ module widthcb
 );
 
 reg 	[`widthcb_width -1:0]	memory		[0:255];
-reg 							y;
+reg 	[`widthcb_width -1:0]	y;
 
 assign out = y;
 

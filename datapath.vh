@@ -30,9 +30,9 @@
 `define fac 510
 
 /// FIXED POINT DEFINITIONS
-// Currently: Q7.8
+// Currently: Q9.6
 `define fp_width 16
-`define fp_frac 7
+`define fp_frac 6
 `define fp_int `fp_width - `fp_frac - 1
 
 // Assumes that we want the fp parameters defined above.

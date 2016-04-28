@@ -1,11 +1,11 @@
 `include "datapath.vh"
 
-module meancb_testbench();
+module meancr_testbench();
 
 reg		[7:0]					Y;
-wire 	[`meancb_width -1:0]	out;
+wire 	[`meancr_width -1:0]	out;
 
-meancb dut(Y, out);
+meancr dut(Y, out);
 
 initial begin
 	$display("Y\t\tout\n");

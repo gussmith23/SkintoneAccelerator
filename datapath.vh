@@ -83,5 +83,18 @@ endmodule
 `define meancr_K_h 16'b1001101000000000
 `define meancb_K_h 16'b0110110000000000
 
+// Auto generated defines. See generate_defines.c.
+`define neg_sint_fp 16'b1111111110110111
+`define cost_fp 16'b1111111110011000
+`define sint_fp 16'b0000000001001001
+`define A2_inv_fp 16'b0000000000000000
+`define B2_inv_fp 16'b0000000000000000
+`define fac_fp 16'b1111111100000000
+`define Cx_fp 16'b0011011010110000
+`define Cy_fp 16'b0100110000000010
+`define ECx_fp 16'b0000000011001100
+`define ECy_fp 16'b0000000100110100
+`define Radius_fp 16'b0111111110000000
+
 
 `endif

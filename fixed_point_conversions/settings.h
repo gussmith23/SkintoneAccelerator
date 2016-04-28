@@ -25,6 +25,16 @@ double B = 14.03                ;
 double Y_min = 16               ;
 double Y_max = 235              ;
 
+double cos_t = -0.81873459927   ;
+double sin_t = 0.57417214835    ;
+
+double A2 = 644.6521            ;
+double B2 = 196.8409            ;
+
+double radius = 255             ;
+double fac = 510                ;
+
+
 const int width = 16;
 const int frac_width = 7;
 const int integer_width = width - frac_width - 1;

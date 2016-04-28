@@ -8,10 +8,10 @@ module skintone_datapath
 (
 	input				clk, 
 	input 				rst,
-	input 	[23:0]			pixel_datain, 
+	input 	[23:0]		pixel_datain, 
 	input				pixel_datain_valid,
 	input				pixel_datain_ready,
-	output	[7:0]			result_dataout,
+	output	[7:0]		result_dataout,
 	output				result_dataout_valid,
 	output				result_dataout_ready
 );
@@ -21,19 +21,19 @@ reg 	[15:0]		valid_in;
 
 // Stages 0-5
 reg 	[`transcr_output - 1: 0] 	transcr_output5, transcb_output5;
-
+wire	[`transcr_output - 1: 0]	transcr_output5_wire, transcb_output5_wire;
 transcr transcr_instance(
 	.clk(clk),
 	.Cr(pixel_datain[7:0]),
 	.Y(pixel_datain[23:16]),
-	.transcr(transcr_output5)
+	.transcr(transcr_output5_wire)
 );
 
 transcb transcb_instance(
 	.clk(clk),
 	.Cb(pixel_datain[15:8]),
 	.Y(pixel_datain[23:16]),
-	.transcb(transcb_output5)
+	.transcb(transcb_output5_wire)
 );
 
 // Stage 6
@@ -42,11 +42,13 @@ reg		[`fp_width - 1:0]			cb_sub_output6, cr_sub_output6;
 // Stage 7
 reg		[`fp_width - 1:0]	cb_mult0_output7, cb_mult1_output7,
 								cr_mult0_output7, cr_mult1_output7;
+wire	[`fp_width - 1:0]	cb_mult0_output7_wire, cb_mult1_output7_wire,
+								cr_mult0_output7_wire, cr_mult1_output7_wire;							
 								
-fp_mult cb_mult0_7(`neg_sint_fp, cb_sub_output6, cb_mult0_output7);
-fp_mult cb_mult1_7(`cost_fp, cb_sub_output6, cb_mult1_output7);
-fp_mult cr_mult0_7(`cost_fp, cr_sub_output6, cr_mult0_output7);
-fp_mult cr_mult1_7(`sint_fp, cr_sub_output6, cr_mult1_output7);
+fp_mult cb_mult0_7(`neg_sint_fp, cb_sub_output6, cb_mult0_output7_wire);
+fp_mult cb_mult1_7(`cost_fp, cb_sub_output6, cb_mult1_output7_wire);
+fp_mult cr_mult0_7(`cost_fp, cr_sub_output6, cr_mult0_output7_wire);
+fp_mult cr_mult1_7(`sint_fp, cr_sub_output6, cr_mult1_output7_wire);
 
 
 // Stage 8
@@ -57,15 +59,17 @@ reg		[`fp_width - 1:0]	cb_sub_output9, cr_sub_output9;
 
 // Stage 10
 reg		[`fp_width - 1:0]	cb_mult_output10, cr_mult_output10;
+wire	[`fp_width - 1:0]	cb_mult_output10_wire, cr_mult_output10_wire;
 
-fp_mult cb_mult_10(cb_sub_output9, cb_sub_output9, cb_mult_output10);
-fp_mult cr_mult_10(cr_sub_output9, cr_sub_output9, cr_mult_output10);
+fp_mult cb_mult_10(cb_sub_output9, cb_sub_output9, cb_mult_output10_wire);
+fp_mult cr_mult_10(cr_sub_output9, cr_sub_output9, cr_mult_output10_wire);
 
 // Stage 11
 reg		[`fp_width - 1:0]	cb_mult_output11, cr_mult_output11;
+wire	[`fp_width - 1:0]	cb_mult_output11_wire, cr_mult_output11_wire;
 
-fp_mult cb_mult_11(`A2_inv_fp, cb_mult_output10, cb_mult_output11);
-fp_mult cr_mult_11(`B2_inv_fp, cr_mult_output10, cr_mult_output11);
+fp_mult cb_mult_11(`A2_inv_fp, cb_mult_output10, cb_mult_output11_wire);
+fp_mult cr_mult_11(`B2_inv_fp, cr_mult_output10, cr_mult_output11_wire);
 
 // Stage 12
 reg 	[`fp_width - 1:0]	add_output12;
@@ -77,8 +81,9 @@ reg							radius_bool13;
 // Stage 14
 reg 	[`fp_width - 1:0]	mult_output14;
 reg							radius_bool14;
+wire	[`fp_width - 1:0]	mult_output14_wire;
 
-fp_mult mult_14(`fac_fp, sub_output13, mult_output14);
+fp_mult mult_14(`fac_fp, sub_output13, mult_output14_wire);
 
 // Stage 15
 reg		[7:0]	skinscore15;
@@ -101,7 +106,12 @@ endgenerate
 //-End valid bits-----------------------------------------
 
 //-Stages 0-5------------------------------------------------
-// These stages are handled by the transcr/transcb structural code.
+
+always @ (posedge clk) begin
+	transcb_output5 <= transcb_output5_wire;
+	transcr_output5 <= transcr_output5_wire;
+end
+
 //-End Stages 0-5-------------------------------------------
 
 //-Stage 6------------------------------------------------
@@ -114,7 +124,14 @@ end
 //-End Stage 6-------------------------------------------
 
 //-Stage 7------------------------------------------------
-// Handled in structural code.
+
+always @ (posedge clk) begin
+	cb_mult0_output7 <= cb_mult0_output7_wire;
+	cb_mult1_output7 <= cb_mult1_output7_wire;
+	cr_mult0_output7 <= cr_mult0_output7_wire;
+	cr_mult1_output7 <= cr_mult1_output7_wire;
+end
+
 //-End Stage 7------------------------------------------
 
 //-Stage 8------------------------------------------------
@@ -136,11 +153,21 @@ end
 //-End Stage 9-------------------------------------------
 
 //-Stage 10------------------------------------------------
-// Handled in structural code.
-//-End Stage 10-------------------------------------------
+
+always @ (posedge clk) begin
+	cb_mult_output10 <= cb_mult_output10_wire;
+	cr_mult_output10 <= cr_mult_output10_wire;
+end
+
+//End Stage 10-------------------------------------------
 
 //-Stage 11------------------------------------------------
-// Handled in structural code.
+
+always @ (posedge clk) begin
+	cb_mult_output11 <= cb_mult_output11_wire;
+	cr_mult_output11 <= cr_mult_output11_wire;
+end
+
 //-End Stage 11-------------------------------------------
 
 //-Stage 12------------------------------------------------
@@ -160,7 +187,10 @@ end
 
 //-Stage 14------------------------------------------------
 
-always @ (posedge clk) radius_bool14 <= radius_bool13;
+always @ (posedge clk) begin 
+	radius_bool14 <= radius_bool13;
+	mult_output14 <= mult_output14_wire;
+end
 
 //-End Stage 14-------------------------------------------
 

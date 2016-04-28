@@ -11,14 +11,14 @@ module transcb
 wire 	[`meancb_width -1:0]	mean_output_wire;
 wire 	[`widthcb_width -1:0]	width_output_wire;
 
-reg 	[7:0]			Cb0, Cb1, Cb2, Cb3, Cb4;
-reg 	[7:0]			Y0;
-reg				valid1, valid2, valid3, valid4;
+reg 	[7:0]					Cb0, Cb1, Cb2, Cb3, Cb4;
+reg 	[7:0]					Y0;
+reg								valid1, valid2, valid3, valid4;
 reg 	[`meancr_width -1:0]	mean_output1;
 reg 	[`widthcr_width -1:0]	width_output1, width_output2;
-reg	[15:0]			sub_output2;
-reg 	[31:0]			mult_output3;
-reg	[15:0]			add_output4;
+reg		[15:0]					sub_output2;
+reg 	[31:0]					mult_output3;
+reg		[15:0]					add_output4;
 
 
 meancr meancb_lut(

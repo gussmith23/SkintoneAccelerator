@@ -13,6 +13,7 @@ reg				result_dataout_ready;
 
 integer cycles;
 
+/*
 skintone_datapath dut(
 	clk, 
 	rst,
@@ -22,21 +23,22 @@ skintone_datapath dut(
 	result_dataout,
 	result_dataout_valid,
 	result_dataout_ready
-);
+);*/
 
 initial begin
 	clk = 0;
 	cycles = 0;
-	pixel_datain_valid = 0;
-	$monitor("%d %d %d\n", cycles, pixel_datain_valid, result_dataout_valid);
+	//pixel_datain_valid = 0;
+	//$monitor("%d %d %d\n", cycles, pixel_datain_valid, result_dataout_valid);
 end
 
 always #5 begin
-	clk = !clk;
-	cycles++;
+	//clk = !clk;
+	//cycles++;
+        $display("test");
 end
 
-always #50 pixel_datain_valid = !pixel_datain_valid;
+//always #50 pixel_datain_valid = !pixel_datain_valid;
 
 always #1000 $finish();
 

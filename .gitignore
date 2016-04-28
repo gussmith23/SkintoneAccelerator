@@ -2,3 +2,8 @@ work
 __pycache__
 work
 *.bak
+*.wlf
+*.vstf
+*.exe
+.nfs*
+transcript

@@ -6,7 +6,7 @@ module meancr
 	output 		[`meancr_width -1:0]	out
 );
 
-reg 	[`meancr_width -1:0]	memory		[0:256];
+reg 	[`meancr_width -1:0]	memory		[0:255];
 reg 	[`meancr_width -1:0]	y;
 
 assign out = y;

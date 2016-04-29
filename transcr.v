@@ -3,9 +3,9 @@
 module transcr
 (
 	input 								clk,
-	input 		[7:0]					Cr,
-	input 		[7:0]					Y,
-	output		[`transcr_output - 1:0]	transcr
+	input 			[7:0]					Cr,
+	input 			[7:0]					Y,
+	output signed	[`transcr_output - 1:0]	transcr
 );
 
 reg 		[7:0]					Cr0, Cr1, Cr2, Cr3, Cr4;
@@ -15,11 +15,11 @@ wire 		[`meancr_width -1:0]	mean_output_wire;
 reg signed 	[`meancr_width -1:0]	mean_output1;
 wire 		[`widthcr_width -1:0]	width_output_wire;
 reg signed	[`widthcr_width -1:0]	width_output1, width_output2;
-reg	signed	[15:0]					sub_output2;
+reg	signed	[`fp_width - 1:0]		sub_output2;
 wire signed	[`fp_width - 1:0] 		mult_output3_wire;
 reg signed	[`fp_width - 1:0]		mult_output3;
-reg	signed	[15:0]					add_output4;
-reg			[`transcr_output - 1:0]	transcr_reg;
+reg	signed	[`fp_width - 1:0]		add_output4;
+reg	signed	[`transcr_output - 1:0]	transcr_reg;
 
 assign transcr = transcr_reg;
 
@@ -79,7 +79,7 @@ end
 ///--OUTPUT-------------------------------
 
 always @ (posedge clk) begin
-	transcr_reg <= valid4 ? Cr4 : add_output4[15:8];
+	transcr_reg <= valid4 ? Cr4 : add_output4;
 end
 
 endmodule 

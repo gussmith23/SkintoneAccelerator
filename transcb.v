@@ -3,9 +3,9 @@
 module transcb
 (
 	input 								clk,
-	input 		[7:0]					Cb,
-	input 		[7:0]					Y,
-	output	reg	[`transcb_output - 1:0]	transcb
+	input 			[7:0]					Cb,
+	input 			[7:0]					Y,
+	output signed	[`transcb_output - 1:0]	transcb
 );
 
 reg 		[7:0]					Cb0, Cb1, Cb2, Cb3, Cb4;
@@ -15,11 +15,11 @@ wire 		[`meancb_width -1:0]	mean_output_wire;
 reg signed	[`meancb_width -1:0]	mean_output1;
 wire 		[`widthcb_width -1:0]	width_output_wire;
 reg signed	[`widthcb_width -1:0]	width_output1, width_output2;
-reg	signed	[15:0]					sub_output2;
+reg	signed	[`fp_width - 1:0]		sub_output2;
 wire signed	[`fp_width - 1:0] 		mult_output3_wire;
 reg signed	[`fp_width - 1:0] 		mult_output3;
-reg	signed	[15:0]					add_output4;
-reg			[`transcb_output - 1:0]	transcb_reg;
+reg	signed	[`fp_width - 1:0]		add_output4;
+reg	signed	[`transcb_output - 1:0]	transcb_reg;
 
 assign transcb = transcb_reg;
 
@@ -79,7 +79,7 @@ end
 ///--OUTPUT-------------------------------
 
 always @ (posedge clk) begin
-	transcb_reg <= valid4 ? Cb4 : add_output4[15:8];
+	transcb_reg <= valid4 ? Cb4 : add_output4;
 end
 
 endmodule 

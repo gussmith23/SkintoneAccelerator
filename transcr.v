@@ -72,7 +72,7 @@ end
 
 always @ (posedge clk) begin
 	Cr4 <= Cr3;
-	add_output4 <= mult_output3 + `meancr_K_h;
+	add_output4 <= mult_output3 + `MeanCr_K_h_fp;
 	valid4 <= valid3;
 end
 

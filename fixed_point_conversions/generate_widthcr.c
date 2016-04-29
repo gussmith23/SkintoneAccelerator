@@ -4,7 +4,7 @@
 #include <bitset>
 #include <cmath>
 
-#define DEBUG 0
+#define DEBUG 1
 
 // TODO the last line generated with this script is in error using Q9.6
 

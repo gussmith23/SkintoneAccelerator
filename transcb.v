@@ -11,9 +11,9 @@ module transcb
 reg 		[7:0]					Cb0, Cb1, Cb2, Cb3, Cb4;
 reg 		[7:0]					Y0;
 reg									valid1, valid2, valid3, valid4;
-wire 		[`meancb_width -1:0]	mean_output_wire;
+wire signed	[`meancb_width -1:0]	mean_output_wire;
 reg signed	[`meancb_width -1:0]	mean_output1;
-wire 		[`widthcb_width -1:0]	width_output_wire;
+wire signed	[`widthcb_width -1:0]	width_output_wire;
 reg signed	[`widthcb_width -1:0]	width_output1, width_output2;
 reg	signed	[`fp_width - 1:0]		sub_output2;
 wire signed	[`fp_width - 1:0] 		mult_output3_wire;

@@ -50,6 +50,19 @@ task convert_to_fixed;
 	end
 endtask
 
+function to_fixed;
+	input real a;
+	reg signed [`fp_width - 1:0] out;
+	
+	real shifted;
+	
+	begin	
+		shifted = a * 2.0**(`fp_frac);
+		out = $rtoi(shifted);
+		to_fixed = out;
+	end
+endfunction
+
 task convert_from_fixed;
 	input reg signed [`fp_width - 1:0] in;
 	output real a;
@@ -61,6 +74,20 @@ task convert_from_fixed;
                 temp_int = in;
 		temp_real = $itor(temp_int);
 		a = temp_real * 2.0**(-1 * `fp_frac);
+	end
+	
+endtask
+
+task from_fixed;
+	input reg signed [`fp_width - 1:0] in;
+	
+	integer temp_int;
+	real temp_real;
+	
+	begin
+                temp_int = in;
+		temp_real = $itor(temp_int);
+		from_fixed = temp_real * 2.0**(-1 * `fp_frac);
 	end
 	
 endtask

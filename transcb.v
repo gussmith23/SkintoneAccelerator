@@ -8,30 +8,32 @@ module transcb
 	output	reg	[`transcb_output - 1:0]	transcb
 );
 
-wire 	[`meancb_width -1:0]	mean_output_wire;
-wire 	[`widthcb_width -1:0]	width_output_wire;
-
-reg 	[7:0]					Cb0, Cb1, Cb2, Cb3, Cb4;
-reg 	[7:0]					Y0;
-reg								valid1, valid2, valid3, valid4;
-reg 	[`meancr_width -1:0]	mean_output1;
-reg 	[`widthcr_width -1:0]	width_output1, width_output2;
-reg		[15:0]					sub_output2;
-reg 	[31:0]					mult_output3;
-reg		[15:0]					add_output4;
-reg				[`transcb_output - 1:0]	transcb_reg;
+reg 		[7:0]					Cb0, Cb1, Cb2, Cb3, Cb4;
+reg 		[7:0]					Y0;
+reg									valid1, valid2, valid3, valid4;
+wire 		[`meancb_width -1:0]	mean_output_wire;
+reg signed	[`meancb_width -1:0]	mean_output1;
+wire 		[`widthcb_width -1:0]	width_output_wire;
+reg signed	[`widthcb_width -1:0]	width_output1, width_output2;
+reg	signed	[15:0]					sub_output2;
+wire signed	[`fp_width - 1:0] 		mult_output3_wire;
+reg signed	[`fp_width - 1:0] 		mult_output3;
+reg	signed	[15:0]					add_output4;
+reg			[`transcb_output - 1:0]	transcb_reg;
 
 assign transcb = transcb_reg;
 
 meancr meancb_lut(
 	.Y(Y0),
-	.out(mean_output)
+	.out(mean_output_wire)
 );
 
 widthcr widthcb_lut(
 	.Y(Y0),
-	.out(width_output)
+	.out(width_output_wire)
 );
+
+fp_mult mult_3(sub_output2, width_output2, mult_output3_wire);
 
 ///--STAGE 0-------------------------------
 
@@ -44,8 +46,8 @@ end
 
 always @ (posedge clk) begin
 	Cb1 <= Cb0;
-	mean_output1 <= mean_output;
-	width_output1 <= width_output;
+	mean_output1 <= mean_output_wire;
+	width_output1 <= width_output_wire;
 	valid1 <= (`K_l<=Y && Y<=`K_h) ? 1 : 0;
 end
 
@@ -62,7 +64,7 @@ end
 
 always @ (posedge clk) begin
 	Cb3 <= Cb2;
-	mult_output3 <= sub_output2 * width_output2;
+	mult_output3 <= mult_output3_wire;
 	valid3 <= valid2;
 end
 

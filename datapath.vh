@@ -78,7 +78,7 @@ task convert_from_fixed;
 	
 endtask
 
-task from_fixed;
+function from_fixed;
 	input reg signed [`fp_width - 1:0] in;
 	
 	integer temp_int;
@@ -90,7 +90,7 @@ task from_fixed;
 		from_fixed = temp_real * 2.0**(-1 * `fp_frac);
 	end
 	
-endtask
+endfunction
 //endmodule
 
 

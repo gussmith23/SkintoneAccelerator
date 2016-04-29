@@ -19,7 +19,9 @@ reg 	[`widthcr_width -1:0]	width_output1, width_output2;
 reg		[15:0]					sub_output2;
 reg 	[31:0]					mult_output3;
 reg		[15:0]					add_output4;
+reg				[`transcb_output - 1:0]	transcb_reg;
 
+assign transcb = transcb_reg;
 
 meancr meancb_lut(
 	.Y(Y0),
@@ -75,7 +77,7 @@ end
 ///--OUTPUT-------------------------------
 
 always @ (posedge clk) begin
-	transcb <= valid4 ? Cb4 : add_output4[15:8];
+	transcb_reg <= valid4 ? Cb4 : add_output4[15:8];
 end
 
 endmodule 

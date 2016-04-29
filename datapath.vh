@@ -69,13 +69,13 @@ endtask
 
 /// END FIXED POINT DEFINITIONS
 
-`define meancr_width 16
-`define widthcr_width 16
-`define meancb_width 16
-`define widthcb_width 16
+`define meancr_width 	`fp_width
+`define widthcr_width 	`fp_width
+`define meancb_width 	`fp_width
+`define widthcb_width 	`fp_width
 
-`define transcr_output 8
-`define transcb_output 8
+`define transcr_output 	`fp_width
+`define transcb_output 	`fp_width
 
 `define fp_mult_input_width `fp_width
 `define fp_mult_output_width `fp_width

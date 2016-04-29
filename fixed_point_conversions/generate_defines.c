@@ -22,4 +22,6 @@ int main()
 	print_line(ECx,					"ECx_fp");
 	print_line(ECy,					"ECy_fp");
 	print_line(radius, 				"Radius_fp");
+	print_line(MeanCb(K_h),			"MeanCb_K_h_fp");
+	print_line(MeanCr(K_h),			"MeanCr_K_h_fp");
 }

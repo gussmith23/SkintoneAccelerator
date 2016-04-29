@@ -59,4 +59,60 @@ inline double convert_from_fixed_point(std::bitset<width> a)
 	return out;
 }
 
+inline double MeanCr(unsigned char Y)
+{
+	if(Y <= K_l)
+		return 154.0 + 10.0*(K_l - Y)/(K_l - Y_min);
+	else if(K_h <= Y)
+		return 154.0 + 22.0*(Y - K_h)/(Y_max - K_h);
+	else
+		return 0.0;
+}
+
+inline double MeanCb(unsigned char Y)
+{
+	if(Y <= K_l)
+		return 108 + 10*(K_l - Y)/(K_l - Y_min);
+	else if(K_h <= Y)
+		return 108 + 10*(Y - K_h)/(Y_max - K_h);
+	else
+		return 0.0;
+}
+
+inline double WidthCr(unsigned char Y)
+{
+	if(Y <= K_l)
+		return WL_Cr + (Y - Y_min)*(W_Cr - WL_Cr)/(K_l - Y_min);
+	else if(K_h <= Y)
+		return WH_Cr + (Y_max - Y)*(W_Cr - WH_Cr)/(Y_max - K_h);
+	else
+		return 0.0;
+}
+
+inline double WidthCb(unsigned char Y)
+{
+	if(Y <= K_l)
+		return WL_Cb + (Y - Y_min)*(W_Cb - WL_Cb)/(K_l - Y_min);
+	else if(K_h <= Y)
+		return WH_Cb + (Y_max - Y)*(W_Cb - WH_Cb)/(Y_max - K_h);
+	else
+		return 0.0;
+}
+
+inline double TransCr(unsigned char Y, unsigned char Cr)
+{
+	if( K_l <= Y && Y <= K_h)
+		return Cr;
+	else
+		return (Cr - MeanCr(Y)) * (W_Cr / WidthCr(Y)) + MeanCr(K_h);
+}
+
+inline double TransCb(unsigned char Y, unsigned char Cb)
+{
+	if( K_l <= Y && Y <= K_h)
+		return Cb;
+	else
+		return (Cb - MeanCb(Y)) * (W_Cb / WidthCb(Y)) + MeanCb(K_h);
+}
+
 #endif

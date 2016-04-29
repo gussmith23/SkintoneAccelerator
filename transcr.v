@@ -2,7 +2,7 @@
 
 module transcr
 (
-	input 								clk,
+	input 									clk,
 	input 			[7:0]					Cr,
 	input 			[7:0]					Y,
 	output signed	[`transcr_output - 1:0]	transcr

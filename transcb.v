@@ -2,7 +2,7 @@
 
 module transcb
 (
-	input 								clk,
+	input 									clk,
 	input 			[7:0]					Cb,
 	input 			[7:0]					Y,
 	output signed	[`transcb_output - 1:0]	transcb

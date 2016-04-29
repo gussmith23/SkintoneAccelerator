@@ -58,7 +58,7 @@ task convert_from_fixed;
 	real temp_real;
 	
 	begin
-		temp_int = in;
+                temp_int = in;
 		temp_real = $itor(temp_int);
 		a = temp_real * 2.0**(-1 * `fp_frac);
 	end

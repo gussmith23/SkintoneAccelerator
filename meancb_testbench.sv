@@ -11,7 +11,7 @@ real meancb_found;
 meancb dut(Y, out);
 
 initial begin
-	$display("actual\t\tfound\n");
+	$display("actual\t\tfound\t\tfound (bits)\n");
 	//$monitor("%d\t\t%b",Y,out);
 	for (integer i = 0; i < 256; i++) begin
 		Y = i;
@@ -24,7 +24,7 @@ initial begin
 
                 convert_from_fixed(out, meancb_found);
 
-                $display("%f\t\t%f", meancb_actual, meancb_found);
+                $display("%f\t\t%f\t\t%b", meancb_actual, meancb_found, out);
 	end
 end
 

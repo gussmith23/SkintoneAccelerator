@@ -24,14 +24,14 @@ reg 	[`transcr_output - 1: 0] 	transcr_output5, transcb_output5;
 wire	[`transcr_output - 1: 0]	transcr_output5_wire, transcb_output5_wire;
 transcr transcr_instance(
 	.clk(clk),
-	.Cr(pixel_datain[7:0]),
+	.Cr(pixel_datain[15:8]),
 	.Y(pixel_datain[23:16]),
 	.transcr(transcr_output5_wire)
 );
 
 transcb transcb_instance(
 	.clk(clk),
-	.Cb(pixel_datain[15:8]),
+	.Cb(pixel_datain[7:0]),
 	.Y(pixel_datain[23:16]),
 	.transcb(transcb_output5_wire)
 );

@@ -4,9 +4,9 @@
 #include <bitset>
 #include <cmath>
 
-#define DEBUG 1
+#define DEBUG 0
 
-// TODO the last line generated with this script is in error using Q9.6
+// TODO error increases significantly at the end.
 
 int main()
 {

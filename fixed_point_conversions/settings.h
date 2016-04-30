@@ -35,8 +35,8 @@ double radius = 255             ;
 double fac = 510                ;
 
 
-const int width = 16;
-const int frac_width = 6;
+const int width = 32;
+const int frac_width = 16;
 const int integer_width = width - frac_width - 1;
 
 inline std::bitset<width> convert_to_fixed_point(double a)

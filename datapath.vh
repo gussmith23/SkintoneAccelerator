@@ -31,8 +31,8 @@
 
 /// FIXED POINT DEFINITIONS
 // Currently: Q9.6
-`define fp_width 16
-`define fp_frac 6
+`define fp_width 32
+`define fp_frac 16
 `define fp_int `fp_width - `fp_frac - 1
 
 // Assumes that we want the fp parameters defined above.

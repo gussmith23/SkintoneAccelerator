@@ -118,7 +118,7 @@ end
 
 always @ (posedge clk) begin
 	cb_sub_output6  <= transcb_output5 - `Cx_fp ;
-	cr_sub_output6  <= `Cy_fp - transcr_output5;
+	cr_sub_output6  <= transcr_output5 - `Cy_fp;
 end
 
 //-End Stage 6-------------------------------------------

@@ -55,7 +55,7 @@ end
 
 always @ (posedge clk) begin
 	Cb2 <= Cb1;
-	sub_output2 <= { {(`fp_width - `fp_frac - 8){Cb1[7]}} , Cb1, {`fp_frac{1'b0}}} - mean_output1;
+	sub_output2 <= { {(`fp_width - `fp_frac - 8){1'b0}} , Cb1, {`fp_frac{1'b0}}} - mean_output1;
 	width_output2 <= width_output1;
 	valid2 <= valid1;
 end

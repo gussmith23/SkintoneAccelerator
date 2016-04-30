@@ -147,7 +147,7 @@ end
 
 always @ (posedge clk) begin
 	cb_sub_output9 <= cb_add_output8 - `ECx_fp ;
-	cr_sub_output9 <= cb_add_output8 - `ECy_fp ;
+	cr_sub_output9 <= cr_add_output8 - `ECy_fp ;
 end
 
 //-End Stage 9-------------------------------------------

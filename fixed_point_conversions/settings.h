@@ -31,8 +31,10 @@ double sin_t = 0.57417214835    ;
 double A2 = 644.6521            ;
 double B2 = 196.8409            ;
 
-double radius = 255             ;
-double fac = 510                ;
+//double radius = 255             ;
+//double fac = 510                ;
+double radius 	= 0.5			;
+double fac 		= 255.0/radius	;
 
 
 const int width = 32;

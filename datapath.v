@@ -196,7 +196,7 @@ end
 
 //-Stage 15------------------------------------------------
 
-always @ (posedge clk) skinscore15 <= (radius_bool14) ? 0 : mult_output14[`fp_frac + 7 : `fp_frac];
+always @ (posedge clk) skinscore15 <= (radius_bool14) ? mult_output14[`fp_frac + 7 : `fp_frac] : 0;
 
 //-End Stage 15-------------------------------------------
 

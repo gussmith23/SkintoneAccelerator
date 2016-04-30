@@ -25,11 +25,11 @@ double B = 14.03                ;
 double Y_min = 16               ;
 double Y_max = 235              ;
 
-double cos_t = -0.81873459927   ;
-double sin_t = 0.57417214835    ;
+double cos_t = cos(Theta)   	;
+double sin_t = sin(Theta)	    ;
 
-double A2 = 644.6521            ;
-double B2 = 196.8409            ;
+double A2 = pow(A, 2.0)         ;
+double B2 = pow(B, 2.0)         ;
 
 //double radius = 255             ;
 //double fac = 510                ;

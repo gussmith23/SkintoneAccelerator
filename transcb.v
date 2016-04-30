@@ -23,12 +23,12 @@ reg	signed	[`transcb_output - 1:0]	transcb_reg;
 
 assign transcb = transcb_reg;
 
-meancr meancb_lut(
+meancb meancb_lut(
 	.Y(Y0),
 	.out(mean_output_wire)
 );
 
-widthcr widthcb_lut(
+widthcb widthcb_lut(
 	.Y(Y0),
 	.out(width_output_wire)
 );
